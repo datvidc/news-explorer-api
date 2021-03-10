@@ -1,0 +1,44 @@
+{
+    "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true
+    },
+    "extends": [
+    "plugin:react/recommended",
+    "airbnb-base"
+    ],
+    "parserOptions": {
+    "ecmaFeatures": {
+    "jsx": true
+    },
+    "ecmaVersion": 12
+    },
+    "plugins": [
+    "react"
+    ],
+    "globals": {
+    "next": "readonly"
+    },
+    "rules": {
+    "no-unused-vars": [
+    "warn"
+    ],
+    "no-var": [
+    "off"
+    ],
+    "one-var": [
+    "off"
+    ],
+    "no-underscore-dangle": [
+    "error",
+    {
+    "allow": [
+    "_id"
+    ]
+    }
+    ],
+    "allowIndentationTabs": 0,
+    "no-tabs": 0
+    }
+    }
