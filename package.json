@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon start",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint 'src/**/*.js?(x)'"
+    "lint": "eslint . ",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,12 +19,17 @@
     "url": "https://github.com/datvidc/news-explorer-api/issues"
   },
   "homepage": "https://github.com/datvidc/news-explorer-api#readme",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.11.20"
+  },
   "devDependencies": {
     "eslint": "^7.21.0",
+    "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-react": "^7.22.0",
+    "jest": "^26.6.3",
     "nodemon": "^2.0.7"
   }
 }
