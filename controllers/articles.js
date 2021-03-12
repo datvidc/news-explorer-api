@@ -19,7 +19,7 @@ module.exports.createArticle = (req, res, next) => {
     source,
     link,
     image,
-    
+    /* owner: req.user._id, */
   })
     .then((article) => {
       res.send({ data: article });
