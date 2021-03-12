@@ -28,3 +28,13 @@ module.exports.createArticle = (req, res, next) => {
       next(err);
     });
 };
+
+module.exports.returnAllArticles = (req, res, next) => {
+  Article.find({})
+    .then((articles) => {
+      res.send(articles);
+    })
+    .catch((err) => {
+      next(err);
+    });
+};

@@ -5,7 +5,6 @@ const routes = require('./routes/index');
 const PORT = 3000;
 /* require('dotenv').config();
 
-
 const { celebrate, Joi, errors } = require('celebrate');
 const cors = require('cors'); */
 

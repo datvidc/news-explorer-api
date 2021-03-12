@@ -1,10 +1,8 @@
 const Articlerouter = require('express').Router();
 
-const { createArticle } = require('../controllers/articles');
+const { createArticle, returnAllArticles } = require('../controllers/articles');
 
 Articlerouter.post('/', createArticle);
-Articlerouter.get('/', () => {
-  return 'working';
-});
+Articlerouter.get('/', returnAllArticles);
 
 module.exports = Articlerouter;
