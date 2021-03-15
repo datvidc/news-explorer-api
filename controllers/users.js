@@ -26,10 +26,11 @@ module.exports.signupController = (req, res, next) => {
           throw new ErrorHandler(500, 'Internal service error');
         }
       })
-      .catch((err) => {
-        next(err);
-      });
+
     })
+    .catch((err) => {
+      next(err);
+    });
 }
 
 module.exports.signinController = (req, res, next) => {
