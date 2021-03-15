@@ -29,8 +29,10 @@ module.exports.createArticle = (req, res, next) => {
     });
 };
 
-module.exports.returnAllArticles = (req, res, next) => {
-  Article.find({})
+module.exports.returnUsersArticles = (req, res, next) => {
+  const userID = req.body.id;
+  console.log(req.body.id);
+  Article.find({ _id: userID })
     .then((articles) => {
       res.send(articles);
     })
