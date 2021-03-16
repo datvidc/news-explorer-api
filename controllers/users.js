@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs'); // importing bcrypt
 const jwt = require('jsonwebtoken'); // importing JWT
-const { handleError, ErrorHandler } = require('../middleware/errors'); //importing error handler
+const { ErrorHandler } = require('../middleware/errors'); // importing error handler
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 const User = require('../models/user');
@@ -54,4 +54,3 @@ module.exports.signUserIn = (req, res, next) => {
       next(err);
     });
 };
-
