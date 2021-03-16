@@ -3,8 +3,8 @@ const jwt = require('jsonwebtoken'); // importing JWT
 
 const User = require('../models/user');
 
-module.exports.signupController = (req, res, next) => {
-  const { name, password, email } = req.body; \
+module.exports.createNewUser = (req, res, next) => {
+  const { name, password, email } = req.body;
 
   bcrypt.hash(password, 10)
     .then((hash) => {
@@ -13,27 +13,26 @@ module.exports.signupController = (req, res, next) => {
         email,
         password: hash,
       })
-      .then((user) => res.send({
-        data: user.returnJson(),
-      }))
-      .catch((err) => {
-        //not the final error block
-        if (err.name === 'ValidationError') {
-          throw new ErrorHandler(401, 'User validation failed');
-        } else if (err.name === 'MongoError') {
-          throw new ErrorHandler(409, 'User validation failed');
-        } else {
-          throw new ErrorHandler(500, 'Internal service error');
-        }
-      })
-
+        .then((user) => res.send({
+          data: user.returnJson(),
+        }))
+        .catch((err) => {
+          // not the final error block
+          if (err.name === 'ValidationError') {
+            throw new ErrorHandler(401, 'User validation failed');
+          } else if (err.name === 'MongoError') {
+            throw new ErrorHandler(409, 'User validation failed');
+          } else {
+            throw new ErrorHandler(500, 'Internal service error');
+          }
+        });
     })
     .catch((err) => {
       next(err);
     });
-}
+};
 
-module.exports.signinController = (req, res, next) => {
+module.exports.signUserIn = (req, res, next) => {
   const { email, password } = req.body;
 
   // using finduserbycredentials from static model method.
