@@ -1,6 +1,8 @@
 const bcrypt = require('bcryptjs'); // importing bcrypt
 const jwt = require('jsonwebtoken'); // importing JWT
+const { handleError, ErrorHandler } = require('../middleware/errors'); //importing error handler
 
+const { NODE_ENV, JWT_SECRET } = process.env;
 const User = require('../models/user');
 
 module.exports.createNewUser = (req, res, next) => {
@@ -17,6 +19,7 @@ module.exports.createNewUser = (req, res, next) => {
           data: user.returnJson(),
         }))
         .catch((err) => {
+          console.log(err);
           // not the final error block
           if (err.name === 'ValidationError') {
             throw new ErrorHandler(401, 'User validation failed');
@@ -36,7 +39,7 @@ module.exports.signUserIn = (req, res, next) => {
   const { email, password } = req.body;
 
   // using finduserbycredentials from static model method.
-  User.findUserByCredentials(email, password)
+  User.findUserByCredentials(email, password, next)
     .then((user) => {
       // authentication successful! user is in the user variable now for JWT
       const token = jwt.sign(
@@ -51,3 +54,4 @@ module.exports.signUserIn = (req, res, next) => {
       next(err);
     });
 };
+
