@@ -1,5 +1,5 @@
 const router = require('express').Router(); // creating Express Router
-const { celebrate, Joi } = require('celebrate'); //importing the celebreate validation lib
+const { celebrate, Joi } = require('celebrate'); // importing the celebreate validation lib
 
 const users = require('../controllers/users');
 

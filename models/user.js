@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs'); // importing bcrypt
 const validator = require('validator');
-const { handleError, ErrorHandler } = require('../middleware/errors'); //importing error handler
+const { ErrorHandler } = require('../middleware/errors'); // importing error handler
 
 const userSchema = new mongoose.Schema({
   name: { //  name — username, string from 2 to 30 characters, required field
@@ -44,8 +44,8 @@ userSchema.statics.findUserByCredentials = function usercred(email, password, ne
           return user; // making user available
         })
         .catch((error) => {
-          throw new ErrorHandler(401, 'User validation failed');
-        })
+          throw new ErrorHandler(401, error);
+        });
     })
     .catch((error) => {
       next(error);
