@@ -1,16 +1,17 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose'); // importing mongoose
 const routes = require('./routes/index');
 
-const PORT = 3000;
-/* require('dotenv').config();
+const { PORT = 3000 } = process.env;
+/*
 
 const { celebrate, Joi, errors } = require('celebrate');
 const cors = require('cors'); */
 
 const app = express();
 
-mongoose.set('runValidators', true); // MMongo doesnt run validation on update by default
+mongoose.set('runValidators', true); // Mongo doesnt run validation on update by default
 
 mongoose.connect('mongodb://localhost:27017/news', {
   useNewUrlParser: true,
