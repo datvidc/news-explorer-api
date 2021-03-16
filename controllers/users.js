@@ -41,13 +41,15 @@ module.exports.signUserIn = (req, res, next) => {
   // using finduserbycredentials from static model method.
   User.findUserByCredentials(email, password, next)
     .then((user) => {
-      // authentication successful! user is in the user variable now for JWT
-      const token = jwt.sign(
-        { _id: user._id },
-        NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
-        { expiresIn: '7d' },
-      );
-      res.send({ token });
+      if (user) {
+        // authentication successful! user is in the user variable now for JWT
+        const token = jwt.sign(
+          { _id: user._id },
+          NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+          { expiresIn: '7d' },
+        );
+        res.send({ token });
+      }
     })
     .catch((err) => {
       // authentication error
