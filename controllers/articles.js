@@ -19,7 +19,7 @@ module.exports.createArticle = (req, res, next) => {
     source,
     link,
     image,
-    /* owner: req.user._id, */
+    owner: req.user._id,
   })
     .then((article) => {
       res.send({ data: article });
@@ -30,11 +30,26 @@ module.exports.createArticle = (req, res, next) => {
 };
 
 module.exports.returnUsersArticles = (req, res, next) => {
-  const userID = req.body.id;
-  console.log(req.body.id);
-  Article.find({ _id: userID })
+  const userID = req.user._id;
+
+  Article.find({ owner: userID })
     .then((articles) => {
       res.send(articles);
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+module.exports.killArticle = (req, res, next) => {
+  const articleId = req.params.id;
+
+  Article.findOneAndDelete(
+    // mongoDB shell method. I can give some filters
+    { _id: articleId, owner: { _id: req.user._id } },
+  )
+    .then((article) => {
+      res.send(article);
     })
     .catch((err) => {
       next(err);

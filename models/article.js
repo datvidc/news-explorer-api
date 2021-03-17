@@ -24,12 +24,11 @@ const articleSchema = new mongoose.Schema({
       message: 'Sorry, the URL does not match my validation requirements',
     },
   },
-  /*   owner: {
+  owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
     required: true,
-    select: false,
-  }, */
+  },
   createdAt: {
     type: Date,
     default: Date.now,
