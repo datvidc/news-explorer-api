@@ -16,17 +16,19 @@ Articlerouter.post('/', celebrate({
 }), createArticle);
 
 Articlerouter.get('/', celebrate({
-  params: Joi.object().keys({
-    id: Joi.string().min(24).max(24).required()
-      .alphanum(),
-  }),
+  headers: Joi.object()
+    .keys({
+      authorization: Joi.string().required(),
+    })
+    .options({ allowUnknown: true }),
 }), returnUsersArticles);
 
 Articlerouter.delete('/:id', celebrate({
-  params: Joi.object().keys({
-    id: Joi.string().min(24).max(24).required()
-      .alphanum(),
-  }),
+  headers: Joi.object()
+    .keys({
+      authorization: Joi.string().required(),
+    })
+    .options({ allowUnknown: true }),
 }), killArticle);
 
 module.exports = Articlerouter;
