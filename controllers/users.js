@@ -19,7 +19,6 @@ module.exports.createNewUser = (req, res, next) => {
           data: user.returnJson(),
         }))
         .catch((err) => {
-          console.log(err);
           // not the final error block
           if (err.name === 'ValidationError') {
             throw new ErrorHandler(401, 'User validation failed');

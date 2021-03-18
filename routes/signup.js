@@ -9,8 +9,8 @@ router.post('/', celebrate({
     email: Joi.string().required().email(),
     password: Joi.string().required(),
   }),
-})
-, (req, res, next) => {
+}),
+(req, res, next) => {
   users.createNewUser(req, res, next);
 });
 

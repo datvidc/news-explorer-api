@@ -1,15 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose'); // importing mongoose
+const cors = require('cors');
+const { errors } = require('celebrate');
 const routes = require('./routes/index');
-const { celebrate, Joi, errors } = require('celebrate');
-const { handleError, ErrorHandler } = require('./middleware/errors');
+const { handleError } = require('./middleware/errors');
+const { requestLogger, errorLogger } = require('./middleware/logger');
 
 const { PORT = 3000 } = process.env;
-/*
-
-const { celebrate, Joi, errors } = require('celebrate');
-const cors = require('cors'); */
 
 const app = express();
 
@@ -23,8 +21,15 @@ mongoose.connect('mongodb://localhost:27017/news', {
 });
 app.use(express.json());
 
+// Getting the app to use cors
+app.use(cors());
+
+// enabling the request logger
+app.use(requestLogger);
+
 app.use('/', routes);
 
+app.use(errorLogger); // enabling the error logger
 
 // only celebrate errors
 app.use(errors());
@@ -34,10 +39,11 @@ app.use((err, req, res, next) => {
   handleError(err, res);
 });
 
+// TODO delete this next blob..only for dev
 process.on('warning', (warning) => {
-  console.warn(warning.name);    // Print the warning name
+  console.warn(warning.name); // Print the warning name
   console.warn(warning.message); // Print the warning message
-  console.warn(warning.stack);   // Print the stack trace
+  console.warn(warning.stack); // Print the stack trace
 });
 
 /* #TODO delete the console.log...not allowed */
