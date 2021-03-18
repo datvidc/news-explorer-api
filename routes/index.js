@@ -11,7 +11,7 @@ router.use('/signin', signinRouter);
 router.use('/signup', signupRouter);
 
 router.use('/articles', Auth, Articlerouter);
-router.use('/user', Auth, UserRouter);
+router.use('/users', Auth, UserRouter);
 
 // this goes last-catchall.
 router.get('*', () => {

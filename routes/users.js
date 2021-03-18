@@ -4,10 +4,11 @@ const { celebrate, Joi } = require('celebrate'); // importing the celebreate val
 const users = require('../controllers/users');
 
 router.get('/me', celebrate({
-  params: Joi.object().keys({
-    id: Joi.string().min(24).max(24).required()
-      .alphanum(),
-  }),
+  headers: Joi.object()
+    .keys({
+      authorization: Joi.string().required(),
+    })
+    .options({ allowUnknown: true }),
 }), (req, res, next) => {
   users.getUserById(req, res, next);
 });
