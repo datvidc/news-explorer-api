@@ -24,11 +24,9 @@ Articlerouter.get('/', celebrate({
 }), returnUsersArticles);
 
 Articlerouter.delete('/:id', celebrate({
-  headers: Joi.object()
-    .keys({
-      authorization: Joi.string().required(),
-    })
-    .options({ allowUnknown: true }),
+  params: Joi.object().keys({
+    id: Joi.string().required().length(24).hex(),
+  }),
 }), killArticle);
 
 module.exports = Articlerouter;

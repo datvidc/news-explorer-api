@@ -6,6 +6,8 @@ const { errors } = require('celebrate');
 const routes = require('./routes/index');
 const { handleError } = require('./middleware/errors');
 const { requestLogger, errorLogger } = require('./middleware/logger');
+const { limiter } = require('./middleware/limiter');
+const helmet = require('helmet');
 
 const { PORT = 3000 } = process.env;
 
@@ -14,7 +16,7 @@ const { DB_ADRESS } = require('./utils/consts');
 const app = express();
 
 mongoose.set('runValidators', true); // Mongo doesnt run validation on update by default
-console.log(DB_ADRESS);
+
 mongoose.connect(DB_ADRESS, {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -23,8 +25,12 @@ mongoose.connect(DB_ADRESS, {
 });
 app.use(express.json());
 
+app.use(helmet());
+
 // Getting the app to use cors
 app.use(cors());
+
+app.use(limiter);
 
 // enabling the request logger
 app.use(requestLogger);
