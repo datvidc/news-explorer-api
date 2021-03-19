@@ -26,6 +26,7 @@ const userSchema = new mongoose.Schema({
         return validator.isEmail(email);
       },
       message: 'Kindly use a valid email address',
+      
     },
   },
 });
