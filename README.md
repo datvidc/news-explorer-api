@@ -3,6 +3,8 @@ FINAL project in Practicum WebDeveloper Bootcamp
 
 Project consists of integrating news API with own backend, serving a frontend that enables users to search for news articles. 
 
+API can be found at api.dave.students.nomoreparties.site
+
 
 Practicum by Yandex course overview:
 1. Basics of HTML, CSS:
