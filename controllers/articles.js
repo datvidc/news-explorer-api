@@ -1,4 +1,5 @@
 const Article = require('../models/article');
+const { ErrorHandler } = require('../middleware/errors'); // importing error handler
 
 module.exports.createArticle = (req, res, next) => {
   const {
@@ -25,6 +26,11 @@ module.exports.createArticle = (req, res, next) => {
       res.send({ data: article });
     })
     .catch((err) => {
+      if (err.name === 'ValidationError') {
+        throw new ErrorHandler(400, err.message);
+      }
+    })
+    .catch((err) => {
       next(err);
     });
 };
@@ -49,7 +55,12 @@ module.exports.killArticle = (req, res, next) => {
     { _id: articleId, owner: { _id: req.user._id } },
   )
     .then((article) => {
-      res.send(article);
+      if (article) {
+        res.send(article);
+      }
+      else {
+        throw new ErrorHandler(404, 'server could not find the requested ressource');
+      }
     })
     .catch((err) => {
       next(err);
