@@ -39,14 +39,7 @@ app.use((err, req, res, next) => {
   handleError(err, res);
 });
 
-// TODO delete this next blob..only for dev
-process.on('warning', (warning) => {
-  console.warn(warning.name); // Print the warning name
-  console.warn(warning.message); // Print the warning message
-  console.warn(warning.stack); // Print the stack trace
-});
-
 /* #TODO delete the console.log...not allowed */
 app.listen(PORT, () => {
-  console.log(`App listening at port ${PORT}`);
+// console.log(`App listening at port ${PORT}`);
 });

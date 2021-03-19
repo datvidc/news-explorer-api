@@ -43,8 +43,8 @@ userSchema.statics.findUserByCredentials = function usercred(email, password, ne
           }
           return user; // making user available
         })
-        .catch((error) => {
-          throw new ErrorHandler(401, error);
+        .catch((err) => {
+          throw new ErrorHandler(401, err);
         });
     })
     .catch((error) => {
