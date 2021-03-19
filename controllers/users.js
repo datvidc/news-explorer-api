@@ -27,6 +27,8 @@ module.exports.createNewUser = (req, res, next) => {
           } else {
             throw new ErrorHandler(500, 'Internal service error');
           }
+        }).catch((err) => {
+          next(err);
         });
     })
     .catch((err) => {
