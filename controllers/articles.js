@@ -57,8 +57,7 @@ module.exports.killArticle = (req, res, next) => {
     .then((article) => {
       if (article) {
         res.send(article);
-      }
-      else {
+      } else {
         throw new ErrorHandler(404, 'server could not find the requested ressource');
       }
     })
