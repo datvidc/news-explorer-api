@@ -3,11 +3,11 @@ const express = require('express');
 const mongoose = require('mongoose'); // importing mongoose
 const cors = require('cors');
 const { errors } = require('celebrate');
+const helmet = require('helmet');
 const routes = require('./routes/index');
 const { handleError } = require('./middleware/errors');
 const { requestLogger, errorLogger } = require('./middleware/logger');
 const { limiter } = require('./middleware/limiter');
-const helmet = require('helmet');
 
 const { PORT = 3000 } = process.env;
 
