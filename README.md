@@ -3,6 +3,8 @@ FINAL project in Practicum WebDeveloper Bootcamp
 
 # API can be found at 
 api.dave.students.nomoreparties.site
+https://api.dave.students.nomoreparties.site
+http://api.dave.students.nomoreparties.site
 
 Project consists of integrating news API with own backend, serving a frontend that enables users to search for news articles. 
 
