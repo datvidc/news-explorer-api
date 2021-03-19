@@ -9,11 +9,13 @@ const { requestLogger, errorLogger } = require('./middleware/logger');
 
 const { PORT = 3000 } = process.env;
 
+const { DB_ADRESS } = require('./utils/consts');
+
 const app = express();
 
 mongoose.set('runValidators', true); // Mongo doesnt run validation on update by default
-
-mongoose.connect('mongodb://localhost:27017/news', {
+console.log(DB_ADRESS);
+mongoose.connect(DB_ADRESS, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
