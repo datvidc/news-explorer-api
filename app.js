@@ -25,6 +25,10 @@ mongoose.connect(DB_ADRESS, {
 });
 app.use(express.json());
 
+// enabling the request logger
+app.use(requestLogger);
+
+// Always wear a helmet :)
 app.use(helmet());
 
 // Getting the app to use cors
