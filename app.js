@@ -33,6 +33,7 @@ app.use(helmet());
 
 // Getting the app to use cors
 app.use(cors());
+app.options('*', cors());
 
 app.use(limiter);
 
