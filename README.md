@@ -8,7 +8,7 @@ http://api.dave.students.nomoreparties.site
 
 Project consists of integrating news API with own backend, serving a frontend that enables users to search for news articles. 
 
-
+ 
 Practicum by Yandex course overview:
 1. Basics of HTML, CSS:
 2. Advanced HTML & CSS
